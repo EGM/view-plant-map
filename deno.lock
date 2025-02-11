@@ -3,6 +3,7 @@
   "specifiers": {
     "npm:@deno/vite-plugin@1": "1.0.3_vite@6.0.11",
     "npm:@tailwindcss/vite@^4.0.4": "4.0.4_vite@6.0.11_lightningcss@1.29.1",
+    "npm:@types/geojson@^7946.0.16": "7946.0.16",
     "npm:@vitejs/plugin-vue@^5.2.1": "5.2.1_vite@6.0.11_vue@3.5.13",
     "npm:autoprefixer@^10.4.20": "10.4.20_postcss@8.5.1",
     "npm:ol-contextmenu@^5.5.0": "5.5.0_ol@10.4.0",
@@ -904,6 +905,7 @@
     "dependencies": [
       "npm:@deno/vite-plugin@1",
       "npm:@tailwindcss/vite@^4.0.4",
+      "npm:@types/geojson@^7946.0.16",
       "npm:@vitejs/plugin-vue@^5.2.1",
       "npm:autoprefixer@^10.4.20",
       "npm:ol-contextmenu@^5.5.0",

@@ -12,6 +12,7 @@
   "imports": {
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.0",
     "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.0.4",
+    "@types/geojson": "npm:@types/geojson@^7946.0.16",
     "@vitejs/plugin-vue": "npm:@vitejs/plugin-vue@^5.2.1",
     "autoprefixer": "npm:autoprefixer@^10.4.20",
     "ol": "npm:ol@^10.4.0",
