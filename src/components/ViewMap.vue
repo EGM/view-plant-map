@@ -10,7 +10,7 @@ const geoJson = new format.GeoJSON();
 </script>
 
 <template>
-    <ol-map style="min-width: 400px;" class="h-screen w-screen" @click="console.log('Clicked!')">
+    <ol-map style="min-width: 400px;" class="h-screen w-full" @click="console.log('Clicked!')">
         <ol-view :center=center :zoom=zoom projection="EPSG:4326" />
         <ol-tile-layer>
             <ol-source-osm />
