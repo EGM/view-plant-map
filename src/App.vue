@@ -15,16 +15,35 @@ const handleSelect = (id, newCenter) => {
 </script>
 
 <template>
-  <div class="flex">
-    <ViewMap class="w-full md:w-5/6" :zoom="19" :center="mapCenter"></ViewMap>
+  <div style="display: flex;">
+    <ViewMap :zoom="19" :center="mapCenter" class="map-size"></ViewMap>
+
     <div>
-      <div class="w-68 med:w-68 h-1/2 border-2 rounded-lg">
-        <ViewList :features="features" class="overflow-scroll h-full" @select="handleSelect" />
+      <div class="container scrollXY">
+        <ViewList :features="features" @select="handleSelect" />
       </div>
-      <div class="w-68 med:w-68 h-1/2 border-2 rounded-lg">
+      <div class="container">
         <h2>Details:</h2>
         <ViewDetails :feature="features.find(filterById)" />
       </div>
     </div>
+
   </div>
 </template>
+
+<style scoped>
+.map-size {
+  height: 100vh;
+  width: calc(100% - 17rem);
+}
+.container {
+  width: 17rem;
+  height: calc(1/2 * 100vh);
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 0.5rem;
+}
+.scrollXY {
+  overflow: scroll;
+}
+</style>
