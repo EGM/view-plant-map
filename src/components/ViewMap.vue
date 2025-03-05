@@ -15,14 +15,14 @@ const format: any = inject("ol-format");
 const geoJson = new format.GeoJSON();
 
 const view = ref<View>();
-  const map = ref(null);
-  const position = ref([]);
+const map = ref(null);
+const position = ref([]);
 
 
 const selectPoint = (event) => {
     console.log(event);
 }
-const selectConditions = inject("ol-selectconditions");
+const selectConditions: any = inject("ol-selectconditions");
 
 const selectCondition = selectConditions.pointerMove;
 
@@ -42,7 +42,7 @@ const geoLocChange = (event: ObjectEvent) => {
     console.log("AAAAA", event);
     position.value = event.target.getPosition();
     view.value?.setCenter(event.target?.getPosition());
-  };
+};
 </script>
 
 <template>
@@ -53,19 +53,19 @@ const geoLocChange = (event: ObjectEvent) => {
         </ol-tile-layer>
 
         <ol-geolocation :projection="projection" @change:position="geoLocChange">
-        <template>
-          <ol-vector-layer :zIndex="2">
-            <ol-source-vector>
-              <ol-feature ref="positionFeature">
-                <ol-geom-point :coordinates="position"></ol-geom-point>
-                <ol-style>
-                  <ol-style-icon :src="hereIcon" :scale="0.1"></ol-style-icon>
-                </ol-style>
-              </ol-feature>
-            </ol-source-vector>
-          </ol-vector-layer>
-        </template>
-      </ol-geolocation>
+            <template>
+                <ol-vector-layer :zIndex="2">
+                    <ol-source-vector>
+                        <ol-feature ref="positionFeature">
+                            <ol-geom-point :coordinates="position"></ol-geom-point>
+                            <ol-style>
+                                <ol-style-icon :src="hereIcon" :scale="0.1"></ol-style-icon>
+                            </ol-style>
+                        </ol-feature>
+                    </ol-source-vector>
+                </ol-vector-layer>
+            </template>
+        </ol-geolocation>
 
         <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter">
             <ol-style>

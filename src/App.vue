@@ -4,7 +4,19 @@ import ViewDetails from "./components/ViewDetails.vue";
 import ViewList from "./components/ViewList.vue";
 import ViewMap from "./components/ViewMap.vue";
 import featuresCollection from "./assets/wwtp1.json";
-const features = featuresCollection.features;
+const itemSort = (a, b) => {
+  const nameA = a.properties.name.toUpperCase(); // ignore upper and lowercase
+  const nameB = b.properties.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  // names must be equal
+  return 0;
+};
+const features = featuresCollection.features.sort(itemSort);
 const featureId = ref("01");
 const mapCenter = ref([-81.20767148755314, 29.548722921422694]);
 const filterById = item => item.id === featureId.value;
@@ -23,7 +35,7 @@ const handleMapClickEvent = (id) => {
     <ViewMap :zoom="19" :center="mapCenter" class="map-size" @mapClickEvent="handleMapClickEvent"></ViewMap>
 
     <div>
-      <div class="container scrollXY">
+      <div class="container scrollY">
         <ViewList :features="features" @select="handleSelect" />
       </div>
       <div class="container">
@@ -49,6 +61,6 @@ const handleMapClickEvent = (id) => {
   border-radius: 0.5rem;
 }
 
-.scrollXY {
-  overflow: scroll;
+.scrollY {
+  overflow-y: scroll;
 }</style>

@@ -23,3 +23,6 @@ dist
 *.njsproj
 *.sln
 *.sw?
+
+# Demos that I used to learn from
+*Demo.*

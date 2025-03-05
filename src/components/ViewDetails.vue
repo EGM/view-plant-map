@@ -8,3 +8,9 @@ defineProps<{ feature: any }>()
         Name: {{ feature.properties.name }}
     </div>
 </template>
+
+<style scoped>
+    div {
+        padding-left: 1rem;
+    }
+</style>
