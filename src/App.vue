@@ -12,11 +12,15 @@ const handleSelect = (id, newCenter) => {
   featureId.value = id;
   mapCenter.value = newCenter;
 }
+const handleMapClickEvent = (id) => {
+  featureId.value = id;
+  console.log(id)
+}
 </script>
 
 <template>
   <div style="display: flex;">
-    <ViewMap :zoom="19" :center="mapCenter" class="map-size"></ViewMap>
+    <ViewMap :zoom="19" :center="mapCenter" class="map-size" @mapClickEvent="handleMapClickEvent"></ViewMap>
 
     <div>
       <div class="container scrollXY">
@@ -36,6 +40,7 @@ const handleSelect = (id, newCenter) => {
   height: 100vh;
   width: calc(100% - 17rem);
 }
+
 .container {
   width: 17rem;
   height: calc(1/2 * 100vh);
@@ -43,7 +48,7 @@ const handleSelect = (id, newCenter) => {
   border-width: 2px;
   border-radius: 0.5rem;
 }
+
 .scrollXY {
   overflow: scroll;
-}
-</style>
+}</style>
