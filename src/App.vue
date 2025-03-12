@@ -4,43 +4,56 @@ import ViewDetails from "./components/ViewDetails.vue";
 import ViewList from "./components/ViewList.vue";
 import ViewMap from "./components/ViewMap.vue";
 import featuresCollection from "./assets/wwtp1.json";
-const itemSort = (a, b) => {
-  const nameA = a.properties.name.toUpperCase(); // ignore upper and lowercase
-  const nameB = b.properties.name.toUpperCase(); // ignore upper and lowercase
-  if (nameA < nameB) {
-    return -1;
-  }
-  if (nameA > nameB) {
-    return 1;
-  }
-  // names must be equal
+
+// Sort by name.
+const byName = (a, b) => {
+  const nameA = a.properties.name;
+  const nameB = b.properties.name;
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
   return 0;
 };
-const features = featuresCollection.features.sort(itemSort);
+
+// Sort by tag.
+const byTag = (a, b) => {
+  const nameA = a.properties.tag; 
+  const nameB = b.properties.tag; 
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+};
+
+// Find by Id.
+const byId = (item) => item.id === featureId.value;
+
+// Initialize variables.
+const features = featuresCollection.features.sort(byTag).sort(byName);
 const featureId = ref("01");
 const mapCenter = ref([-81.20767148755314, 29.548722921422694]);
-const filterById = item => item.id === featureId.value;
-const handleSelect = (id, newCenter) => {
+
+
+const handleListSelect = (id, newCenter) => {
+  console.log("handleSelect")
   featureId.value = id;
   mapCenter.value = newCenter;
 }
-const handleMapClickEvent = (id) => {
+const handleMapSelect = (id) => {
+  console.log("handleMapClickEvent")
   featureId.value = id;
-  console.log(id)
 }
 </script>
 
 <template>
   <div style="display: flex;">
-    <ViewMap :zoom="19" :center="mapCenter" class="map-size" @mapClickEvent="handleMapClickEvent"></ViewMap>
+    <ViewMap :zoom="19" :center="mapCenter" :selectedId="featureId" class="map-size" @selectFeatureEvent="handleMapSelect" />
 
     <div>
       <div class="container scrollY">
-        <ViewList :features="features" @select="handleSelect" />
+        <ViewList :features="features" @select="handleListSelect" />
       </div>
       <div class="container">
         <h2>Details:</h2>
-        <ViewDetails :feature="features.find(filterById)" />
+        <ViewDetails :feature="features.find(byId)" />
       </div>
     </div>
 
@@ -63,4 +76,5 @@ const handleMapClickEvent = (id) => {
 
 .scrollY {
   overflow-y: scroll;
-}</style>
+}
+</style>

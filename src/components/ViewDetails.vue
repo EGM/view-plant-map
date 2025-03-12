@@ -1,5 +1,6 @@
 <script setup lang="ts">
-defineProps<{ feature: any }>()
+import type { Feature } from '../Feature.ts';
+defineProps<{ feature: Feature }>()
 </script>
 
 <template>
@@ -11,15 +12,17 @@ defineProps<{ feature: any }>()
 </template>
 
 <style scoped>
-    div {
-        padding-left: 1rem;
-        font-size: 1.125rem;
-    }
-    label {
-        color: #300;
-        font-size: 0.875rem;
-    }
-    p {
-        margin-top: 0.5rem;
-    }
+div {
+    padding-left: 1rem;
+    font-size: 1.125rem;
+}
+
+label {
+    color: #300;
+    font-size: 0.875rem;
+}
+
+p {
+    margin-top: 0.5rem;
+}
 </style>
